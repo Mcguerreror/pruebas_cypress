@@ -1,43 +1,12 @@
-name: Cypress Tests with Dependency and Artifact Caching
-
-on: push
-
+name: Cypress test
+on: [push]
 jobs:
-  install:
-    runs-on: ubuntu-22.04
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Cypress install
-        uses: cypress-io/github-action@v5
-        with:
-          # Disable running of tests within install job
-          runTests: false
-          build: npm run build
-
-      - name: Save build folder
-        uses: actions/upload-artifact@v3
-        with:
-          name: build
-          if-no-files-found: error
-          path: build
-
   cypress-run:
-    runs-on: ubuntu-22.04
-    needs: install
-    steps:
+     runs-on: ubuntu-latesd
+     steps:
       - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Download the build folder
-        uses: actions/download-artifact@v3
-        with:
-          name: build
-          path: build
-
-      - name: Cypress run
-        uses: cypress-io/github-action@v5
+        uses: actions/checkout@v3.5.3
+      - name: Cypress.io
+        uses: cypress-io/github-action@v5.8.2 
         with:
           start: npm start
-          browser: chrome

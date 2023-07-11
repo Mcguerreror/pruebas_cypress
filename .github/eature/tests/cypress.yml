@@ -18,6 +18,14 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v5
         with:
+               working-directory: C:\pruebas_automatizadas_cypress
+          # Configura los parámetros adicionales según tus necesidades
+
+
+tiene menú contextual
+- name: Generate PDF Report run: node C:\pruebas_automatizadas_cypress\cypress\e2e\Laboratorio frmTg\ERP_EACP_TEST-pdf.js
+
+tiene menú contextual
           working-directory: C:\pruebas_automatizadas_cypress
           # Configura los parámetros adicionales según tus necesidades
 

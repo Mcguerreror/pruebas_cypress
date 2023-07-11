@@ -1,28 +1,38 @@
 
-     name: Cypress Tests
+
+   name: Cypress Tests
+
+ 
+
 on:
   push:
     branches:
-      - automatizacion-cypress
-  pull_request:
-    branches:
-      - automatizacion-cypress
+      - main
+
+ 
+
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        containers: [1, 2]
+
+ 
+
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v3
 
  
 
       - name: Cypress run
-        uses: cypress-io/github-action@v5
+        uses: cypress-io/github-action@v4
         with:
-          working-directory: C:\pruebas_automatizadas_cypress
-          # Configura los parámetros adicionales según tus necesidades
-
-
-      - name: Generate PDF Report 
-        run: node C:\pruebas_automatizadas_cypress\cypress\e2e\Laboratorio frmTg\ERP_EACP_TEST-pdf.js --reportPath=C:\pruebas_automatizadas_cypress\reportes
-
+          start: npm start
+          wait-on: 'http://localhost:3000'
+          record: true
+          parallel: true
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY eb362db0-0d08-47de-b0b3-ded22e15ff0b}}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

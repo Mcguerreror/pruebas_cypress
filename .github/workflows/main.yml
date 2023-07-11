@@ -19,6 +19,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: dime la fecha 
+        run: date
+      - run: ls -l
  
 
       - name: Cypress run

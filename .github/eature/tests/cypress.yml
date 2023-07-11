@@ -1,4 +1,5 @@
-name: Cypress Tests
+
+     name: Cypress Tests
 on:
   push:
     branches:
@@ -24,5 +25,4 @@ jobs:
 
       - name: Generate PDF Report 
         run: node C:\pruebas_automatizadas_cypress\cypress\e2e\Laboratorio frmTg\ERP_EACP_TEST-pdf.js --reportPath=C:\pruebas_automatizadas_cypress\reportes
-
 

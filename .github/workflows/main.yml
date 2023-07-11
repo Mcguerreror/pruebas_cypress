@@ -1,13 +1,27 @@
-name: Cypress test
-on: [push]
+name: Cypress Tests
+
+ 
+
+on:
+  push:
+    branches:
+      - automatizacion-cypress
+  pull_request:
+    branches:
+      - automatizacion-cypress
+
+ 
+
 jobs:
   cypress-run:
-     runs-on: ubuntu-latesd
-     steps:
-      - name: Checkout
-        uses: actions/checkout@v3.5.3
-      - name: Cypress.io
-        uses: cypress-io/github-action@v5.8.2 
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+ 
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v5
         with:
-          build: npm run build
-          start: npm start
+          working-directory: C:\pruebas_automatizadas_cypress
